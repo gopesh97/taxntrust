@@ -19,6 +19,29 @@ import {
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    message: ''
+  });
+
+  const handleWhatsAppSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const whatsappNumber = '919876543210';
+    const message = `Hello! I'm ${formData.name}%0A%0AEmail: ${formData.email}%0APhone: ${formData.phone}%0A%0AMessage: ${formData.message}`;
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${message}`;
+
+    window.open(whatsappUrl, '_blank');
+
+    setFormData({
+      name: '',
+      email: '',
+      phone: '',
+      message: ''
+    });
+  };
 
   const services = [
     {
@@ -321,37 +344,50 @@ function App() {
             
             <div className="bg-white rounded-xl p-8">
               <h3 className="text-2xl font-semibold text-gray-900 mb-6">Send us a message</h3>
-              <form className="space-y-4">
+              <form className="space-y-4" onSubmit={handleWhatsAppSubmit}>
                 <div>
-                  <input 
-                    type="text" 
+                  <input
+                    type="text"
                     placeholder="Your Name"
+                    value={formData.name}
+                    onChange={(e) => setFormData({...formData, name: e.target.value})}
+                    required
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent"
                   />
                 </div>
                 <div>
-                  <input 
-                    type="email" 
+                  <input
+                    type="email"
                     placeholder="Your Email"
+                    value={formData.email}
+                    onChange={(e) => setFormData({...formData, email: e.target.value})}
+                    required
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent"
                   />
                 </div>
                 <div>
-                  <input 
-                    type="tel" 
+                  <input
+                    type="tel"
                     placeholder="Phone Number"
+                    value={formData.phone}
+                    onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                    required
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent"
                   />
                 </div>
                 <div>
-                  <textarea 
+                  <textarea
                     rows={4}
                     placeholder="How can we help you?"
+                    value={formData.message}
+                    onChange={(e) => setFormData({...formData, message: e.target.value})}
+                    required
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent"
                   ></textarea>
                 </div>
-                <button className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors font-medium">
-                  Send Message
+                <button type="submit" className="w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition-colors font-medium flex items-center justify-center space-x-2">
+                  <Phone className="w-5 h-5" />
+                  <span>Send via WhatsApp</span>
                 </button>
               </form>
             </div>
