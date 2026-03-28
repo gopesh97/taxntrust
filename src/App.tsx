@@ -314,11 +314,11 @@ function App() {
               <div className="space-y-4">
                 <div className="flex items-center space-x-4">
                   <Phone className="w-6 h-6 text-blue-200" />
-                  <span className="text-white">+91 98765 43210</span>
+                  <span className="text-white">+91 7503031375</span>
                 </div>
                 <div className="flex items-center space-x-4">
                   <Mail className="w-6 h-6 text-blue-200" />
-                  <span className="text-white">info@TaxNTrust.in</span>
+                  <span className="text-white">info@taxntrust.com</span>
                 </div>
                 <div className="flex items-center space-x-4">
                   <MapPin className="w-6 h-6 text-blue-200" />
