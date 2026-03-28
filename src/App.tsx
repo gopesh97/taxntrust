@@ -145,9 +145,6 @@ function App() {
                   Start Your Tax Filing
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </button>
-                <button className="border-2 border-blue-600 text-blue-600 px-8 py-4 rounded-lg hover:bg-blue-600 hover:text-white transition-all font-medium text-lg">
-                  Free Consultation
-                </button>
               </div>
               <div className="flex items-center space-x-8 mt-8">
                 <div className="text-center">
