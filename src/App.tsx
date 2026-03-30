@@ -20,6 +20,7 @@ import {
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isChatModalOpen, setIsChatModalOpen] = useState(false);
 
   const handleWhatsAppClick = () => {
     const whatsappNumber = '917503031375';
@@ -141,7 +142,11 @@ function App() {
                 Join thousands of satisfied clients who trust us with their financial future.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 mt-8">
-                <button className="bg-blue-600 text-white px-8 py-4 rounded-lg hover:bg-blue-700 transition-all transform hover:scale-105 font-medium text-lg flex items-center justify-center">
+                <button
+                  type="button"
+                  onClick={() => setIsChatModalOpen(true)}
+                  className="bg-blue-600 text-white px-8 py-4 rounded-lg hover:bg-blue-700 transition-all transform hover:scale-105 font-medium text-lg flex items-center justify-center"
+                >
                   Start Your Tax Filing
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </button>
@@ -393,6 +398,35 @@ function App() {
           </div>
         </div>
       </footer>
+      {isChatModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-4 py-10">
+          <div className="relative bg-white rounded-2xl p-8 shadow-2xl w-full max-w-md text-center">
+            <button
+              type="button"
+              onClick={() => setIsChatModalOpen(false)}
+              className="absolute top-4 right-4 text-gray-400 hover:text-gray-600"
+            >
+              <X className="w-5 h-5" />
+            </button>
+            <MessageCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
+            <h3 className="text-2xl font-semibold text-gray-900 mb-3">Quick Chat with Us</h3>
+            <p className="text-gray-600 mb-6">
+              Have questions? Send us a message on WhatsApp and get instant support.
+            </p>
+            <button
+              type="button"
+              onClick={() => {
+                handleWhatsAppClick();
+                setIsChatModalOpen(false);
+              }}
+              className="bg-green-600 text-white px-8 py-4 rounded-lg hover:bg-green-700 transition-all transform hover:scale-105 font-medium flex items-center justify-center space-x-2 mx-auto"
+            >
+              <MessageCircle className="w-5 h-5" />
+              <span>Chat on WhatsApp</span>
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
